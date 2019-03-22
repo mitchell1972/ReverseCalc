@@ -2,18 +2,17 @@ import java.util.Scanner;
 
 public class Main {
 
-    public void calculator() {
-        Scanner scanner = new Scanner(System.in);
+    float result = 0;
+    float firstValue = 0;
+    float nextValue = 0;
+    String operator = "";
+    String continueRunning = null;
+    String equals = "=";
 
-        float firstValue = 0;
-        float nextValue = 0;
-        String operator = "";
-        String continueRunning = null;
-        float result = 0;
-        String equals = "=";
-        int count = 1;
+    Scanner scanner = new Scanner(System.in);
+
+    public void calculator() {
         try {
-            do {
                 System.out.println("Enter first value: ");
                 firstValue = scanner.nextInt();
 
@@ -45,20 +44,55 @@ public class Main {
                         result += firstValue;
                         break;
                 }
-                System.out.println("Do you want to enter more values? Enter Y to continue or N to stop");
-                continueRunning = scanner.next();
-                count++;
-
-            } while (!continueRunning.equals("N".toLowerCase()));
-
-            System.out.println("Result is: " + result);
 
         } catch (Exception e) {
         }
     }
 
-    public static void main(String[] args) {
-        Main mn = new Main();
-        mn.calculator();
+    public void calcExtention() {
+
+        try {
+            do {
+
+                System.out.println("Enter next value: ");
+                nextValue = scanner.nextInt();
+
+                System.out.println("Enter operator: ");
+                operator = scanner.next();
+
+
+                switch (operator) {
+                    case "/":
+                        result = result / nextValue;
+                        break;
+
+                    case "*":
+                        result = result * nextValue;
+                        break;
+
+                    case "+":
+                        result = result + nextValue;
+                        break;
+
+                    case "-":
+                        result = result - nextValue;
+                        break;
+                }
+                System.out.println("Enter Y to continue or N to stop");
+                continueRunning = scanner.next();
+
+            } while (!continueRunning.equals("N".toLowerCase()));
+            System.out.println("Result is: " + result);
+
+        } catch (Exception e) {
+
+        }
     }
+
+        public static void main (String[] args){
+            Main mn = new Main();
+            mn.calculator();
+            mn.calcExtention();
+        }
+
 }
